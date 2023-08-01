@@ -1,0 +1,45 @@
+﻿
+@model ProfileProject.Models.Domain.ApplicationUser
+@{
+    string userName = User.Identity.Name;
+    
+}
+
+Welcome @userName
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-outline-info">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+      
+            <tr>
+                <td>
+                
+                </td>
+                <td>
+                    
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.id  }) |
+                    @Html.ActionLink("Details", "Details", new {  id=item.id  }) |
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.id  })
+                </td>*@
+            </tr>
+        
+    </tbody>
+</table>
+
