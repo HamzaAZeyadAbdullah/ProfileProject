@@ -15,6 +15,7 @@ public class UserAuthenticationService : IUserAuthenticationService
     private readonly IMapper _mapper;
 
 
+
     public UserAuthenticationService(SignInManager<ApplicationUser> signInManager,
                                      UserManager<ApplicationUser> userManager,
                                      RoleManager<IdentityRole> roleManager,
@@ -86,7 +87,8 @@ public class UserAuthenticationService : IUserAuthenticationService
 
     public async Task<Status> RegtirationAsync(RegistrationModel model)
     {
-        var status=new Status();
+
+        var status =new Status();
         var userExists = await userManager.FindByNameAsync(model.UserName);
             if(userExists!=null)
         {
@@ -95,16 +97,19 @@ public class UserAuthenticationService : IUserAuthenticationService
             return status;
         }
 
-        ApplicationUser user = new ApplicationUser()
-        {
-            SecurityStamp=Guid.NewGuid().ToString(),
-            Name = model.Name,
-            Email = model.Email,
-            UserName=model.UserName,
-            PhoneNumber=model.PhoneNumber,
-            EmailConfirmed=true,
-        };
-        var result =await userManager.CreateAsync(user,model.Password);
+        //ApplicationUser user = new ApplicationUser()
+        //{
+        //    SecurityStamp=Guid.NewGuid().ToString(),
+        //    Name = model.Name,
+        //    Email = model.Email,
+        //    UserName=model.UserName,
+        //    PhoneNumber=model.PhoneNumber,
+        //    EmailConfirmed=true,
+        //};
+
+        var mapUser = _mapper.Map<ApplicationUser>(model);
+
+        var result =await userManager.CreateAsync(mapUser, model.Password);
         if(!result.Succeeded)
         {
             status.StatusCode = 0;
@@ -117,7 +122,7 @@ public class UserAuthenticationService : IUserAuthenticationService
 
         if(await roleManager.RoleExistsAsync(model.Role))
         {
-            await userManager.AddToRoleAsync(user, model.Role);
+            await userManager.AddToRoleAsync(mapUser, model.Role);
         }
 
         status.StatusCode = 1;
@@ -153,4 +158,6 @@ public class UserAuthenticationService : IUserAuthenticationService
         }
         return status;
     }
+
+   
 }

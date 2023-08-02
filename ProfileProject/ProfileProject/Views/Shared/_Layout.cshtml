@@ -12,10 +12,10 @@
     <nav class="navbar navbar-default">
         <div class="container-fluid">
             <div class="navbar-header">
-                <a class="navbar-brand" href="#">Dot net 6 authentication</a>
+                <a class="navbar-brand" href="#">Profile Project</a>
             </div>
             <ul class="nav navbar-nav">
-                <li><a href="#">Home</a></li>
+                
                 <li><a href="/Dashboard/Display">Dashboard</a></li>
                 @{var c =User.IsInRole("admin");}
                 @if (c)
@@ -25,6 +25,7 @@
                 @if (!string.IsNullOrEmpty(User.Identity.Name))
                 {
                     <li><a href="/UserAuthentication/ChangePassword">ChangePassword</a></li>
+                    <li><a href="/User/Profile">Profile</a></li>
                     <li><a href="/UserAuthentication/Logout">Logout</a></li>
                 }
             </ul>

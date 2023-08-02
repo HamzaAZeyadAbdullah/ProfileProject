@@ -1,16 +1,26 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using NuGet.Protocol.Core.Types;
 using ProfileProject.Models.Domain;
+using ProfileProject.Repository.Abstract;
 
 namespace ProfileProject.Controllers;
 public class DashboardController : Controller
 {
-    ApplicationUser a = new ApplicationUser();
+   
+    private readonly DatabaseContext _context;
+    public DashboardController( DatabaseContext context)
+    {
+       
+        _context = context;
+    }
+
     [Authorize]
     public IActionResult Display()
     {
-        ViewBag.Name = a.Name;
-        
-        return View();
+  
+        var info =_context.applicationUsers.ToList();
+        return View(info);
     }
+
 }

@@ -21,6 +21,7 @@ builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
 builder.Services.ConfigureApplicationCookie(op => op.LoginPath = "/UserAuthentcation/Login");
 
 builder.Services.AddScoped<IUserAuthenticationService, UserAuthenticationService>();
+builder.Services.AddScoped<IUser, User>();
 
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());
 

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<ProfileProject.Models.Domain.ApplicationUser>
+@{
+    string userName = User.Identity.Name;
+
+}
+
+Welcome @userName
+
+<h1>Profile User</h1>
+<li><a href="/User/Edit">Profile</a></li>
+
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+
+         
+            <tr>
+                
+                 @foreach (var item in Model)
+
+        {
+                if (item.UserName == userName)
+                {
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PhoneNumber)
+                </td>
+                
+                    
+                }
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new {  id=item.id  }) |
+                    @Html.ActionLink("Details", "Details", new {  id=item.id  }) |
+                    @Html.ActionLink("Delete", "Delete", new {  id=item.id  })
+                </td>*@
+                }
+            </tr>
+
+        
+
+    </tbody>
+</table>
+

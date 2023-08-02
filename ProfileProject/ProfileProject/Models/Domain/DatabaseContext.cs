@@ -9,4 +9,5 @@ public class DatabaseContext:IdentityDbContext<ApplicationUser>
     {
         
     }
+    public DbSet<ApplicationUser> applicationUsers { get; set; }
 }
