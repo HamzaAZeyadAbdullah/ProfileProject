@@ -7,7 +7,7 @@
 Welcome @userName
 
 <h1>Profile User</h1>
-<li><a href="/User/Edit">Profile</a></li>
+@*<li><a href="/User/Edit">Profile</a></li>*@
 
 
 
@@ -47,7 +47,7 @@ Welcome @userName
                     <td>
                         @Html.DisplayFor(modelItem => item.PhoneNumber)
                 </td>
-                
+                    <td> @Html.ActionLink("Edit", "Edit", new {  id=item.Id  })</td>
                     
                 }
                 @*<td>

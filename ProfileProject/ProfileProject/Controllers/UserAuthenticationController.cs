@@ -20,7 +20,7 @@ public class UserAuthenticationController : Controller
     {
         if(!ModelState.IsValid)
             return View(model);
-        model.Role = "user";
+        
         var result = await _service.RegtirationAsync(model);
         TempData["msg"] = result.Message;
         return RedirectToAction(nameof(Registration));  

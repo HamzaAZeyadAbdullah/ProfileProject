@@ -106,8 +106,10 @@ public class UserAuthenticationService : IUserAuthenticationService
         //    PhoneNumber=model.PhoneNumber,
         //    EmailConfirmed=true,
         //};
+  
 
         var mapUser = _mapper.Map<ApplicationUser>(model);
+      
 
         var result =await userManager.CreateAsync(mapUser, model.Password);
         if(!result.Succeeded)
